@@ -9,12 +9,15 @@ categories:
 servings: 3
 difficulty: enkel
 ingredients: |-
+  Zucchinimix:
   1 riven urvattnad zucchini
   1 hackad gul lök
   2 msk majonnäs
   ½ dl dill
   2 råa ägg
   Salt peppar
+
+  Tonfiskmix:
   1 tonfiskburk
   2 hackade kokta ägg
   100g riven ost
