@@ -1,0 +1,7 @@
+{{- /* Tar antal minuter och returnerar t.ex. "1 h 30 min". */ -}}
+{{- $m := int . -}}
+{{- $h := div $m 60 -}}
+{{- $r := mod $m 60 -}}
+{{- if and (gt $h 0) (gt $r 0) }}{{ $h }} h {{ $r }} min
+{{- else if gt $h 0 }}{{ $h }} h
+{{- else }}{{ $r }} min{{ end -}}

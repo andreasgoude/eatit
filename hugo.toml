@@ -1,0 +1,26 @@
+baseURL = "https://andreasgoude.github.io/eatit/"
+locale = "sv-SE"
+defaultContentLanguage = "sv"
+title = "eatit"
+theme = "hugo-cuisine-book"
+enableGitInfo = false
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 12
+
+[params]
+  author = "Andreas Goude"
+  description = "Recept som vi lagar om och om igen."
+  # Pennan på receptsidan och plustecknet på startsidan länkar hit.
+  repo = "https://github.com/andreasgoude/eatit"
+  editpath = "edit/main"
+  newpath = "new/main"
+  comment = false
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[markup.goldmark.renderer]
+  unsafe = false

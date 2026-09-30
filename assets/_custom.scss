@@ -1,0 +1,61 @@
+/* Egna stilar för receptsidorna. Temat importerar den här filen från main.scss. */
+
+.recipe-card-image img,
+.recipe-hero {
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.recipe-card-title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.recipe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  color: #666;
+  font-size: 0.9rem;
+
+  i { margin-right: 0.2rem; }
+}
+
+.recipe-times {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+
+  dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888; }
+  dd { margin: 0; font-weight: 600; }
+}
+
+.recipe-body { margin-top: 1.5rem; }
+
+.ingredients {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.recipe-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+@media print {
+  .navbar, .footer, .search-box, .recipe-footer .button { display: none !important; }
+  .box { box-shadow: none; }
+}

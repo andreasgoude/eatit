@@ -1,0 +1,10 @@
+{{- /* Fyra kolumner i "masonry"-stil, som i temat. Tar en paginator. */ -}}
+<div class="columns is-centered is-multiline-mobile">
+  {{- range $col := seq 0 3 }}
+  <div class="column is-3-desktop is-6-tablet">
+    {{- range $i, $p := $.Pages }}
+      {{- if eq (mod $i 4) $col }}{{ partial "box.html" $p }}{{ end }}
+    {{- end }}
+  </div>
+  {{- end }}
+</div>

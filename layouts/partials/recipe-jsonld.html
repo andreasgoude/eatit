@@ -1,0 +1,19 @@
+{{- /* schema.org/Recipe så att Google kan visa receptet som ett rikt resultat. */ -}}
+{{- $d := dict
+  "@context" "https://schema.org"
+  "@type" "Recipe"
+  "name" .Title
+  "description" (.Description | default .Summary | plainify)
+  "datePublished" (.Date.Format "2006-01-02")
+  "author" (dict "@type" "Person" "name" site.Params.author)
+  "recipeIngredient" (.Params.ingredients | default slice)
+  "recipeInstructions" (.Plain | strings.TrimSpace)
+  "keywords" (delimit (.Params.tags | default slice) ", ")
+-}}
+{{- with .Params.categories }}{{ $d = merge $d (dict "recipeCategory" (index . 0)) }}{{ end -}}
+{{- with .Params.servings }}{{ $d = merge $d (dict "recipeYield" (printf "%v portioner" .)) }}{{ end -}}
+{{- with .Params.prepTime }}{{ $d = merge $d (dict "prepTime" (printf "PT%vM" .)) }}{{ end -}}
+{{- with .Params.cookTime }}{{ $d = merge $d (dict "cookTime" (printf "PT%vM" .)) }}{{ end -}}
+{{- with .Params.totalTime }}{{ $d = merge $d (dict "totalTime" (printf "PT%vM" .)) }}{{ end -}}
+{{- with .Params.image }}{{ with $.Resources.GetMatch . }}{{ $d = merge $d (dict "image" (.Fill "1200x900 webp").Permalink) }}{{ end }}{{ end -}}
+<script type="application/ld+json">{{ $d | jsonify | safeJS }}</script>

@@ -1,0 +1,13 @@
+<a class="box" href="{{ .RelPermalink }}" aria-label="{{ .Title }}">
+  {{ with .Params.image }}
+  <figure class="image recipe-card-image">
+    {{ partial "recipe-image.html" (dict "page" $ "size" "600x400" "class" "") }}
+  </figure>
+  {{ end }}
+  <div class="recipe-card-title">{{ .Title }}</div>
+  {{ partial "recipe-meta.html" . }}
+  {{ with .Params.description }}<p><small class="has-text-grey">{{ . }}</small></p>{{ end }}
+  <div class="mt-2">
+    {{ range .Params.tags }}<span class="tag is-primary is-light">{{ . }}</span> {{ end }}
+  </div>
+</a>

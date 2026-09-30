@@ -1,0 +1,51 @@
+{{ define "main" }}
+<div class="section">
+  <article class="container box recipe">
+    <header class="columns is-vcentered">
+      {{ with .Params.image }}
+      <div class="column is-4">
+        <figure class="image">
+          {{ partial "recipe-image.html" (dict "page" $ "size" "800x600" "class" "recipe-hero") }}
+        </figure>
+      </div>
+      {{ end }}
+      <div class="column">
+        <h1 class="title is-2">{{ .Title }}</h1>
+        {{ with .Description }}<p class="subtitle is-5">{{ . }}</p>{{ end }}
+        {{ partial "recipe-meta.html" . }}
+        <dl class="recipe-times">
+          {{ with .Params.prepTime }}<div><dt>Förberedelse</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
+          {{ with .Params.cookTime }}<div><dt>Tillagning</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
+          {{ with .Params.totalTime }}<div><dt>Totalt</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
+        </dl>
+        <div class="mt-3">
+          {{ range .GetTerms "categories" }}<a class="tag is-warning is-light" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> {{ end }}
+          {{ range .GetTerms "tags" }}<a class="tag is-primary is-light" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> {{ end }}
+        </div>
+      </div>
+    </header>
+
+    <div class="columns recipe-body">
+      {{ with .Params.ingredients }}
+      <aside class="column is-4">
+        <h2 class="title is-4">Ingredienser</h2>
+        {{ with $.Params.servings }}<p class="has-text-grey">{{ . }} portioner</p>{{ end }}
+        <ul class="ingredients">
+          {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+        </ul>
+      </aside>
+      {{ end }}
+      <div class="column content">{{ .Content }}</div>
+    </div>
+
+    <footer class="recipe-footer">
+      <small class="has-text-grey">Publicerat {{ .Date | time.Format ":date_long" }}</small>
+      {{ with .File }}{{ with site.Params.repo }}
+      <a class="button is-small" href="{{ . }}/{{ site.Params.editpath }}/content/{{ replace $.File.Path "\\" "/" }}" title="Redigera på GitHub">
+        <span class="icon is-small"><i class="fa fa-pen"></i></span><span>Redigera</span>
+      </a>
+      {{ end }}{{ end }}
+    </footer>
+  </article>
+</div>
+{{ end }}

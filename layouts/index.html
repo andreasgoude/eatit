@@ -1,0 +1,42 @@
+{{ define "main" }}
+<section class="section">
+  <div class="container">
+    {{- with .Content }}
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <div class="content has-text-centered">{{ . }}</div>
+      </div>
+    </div>
+    {{- end }}
+    <div class="has-text-centered" style="margin-bottom: 1.5rem;">
+      <a href="{{ "recipes/" | relURL }}" class="button is-primary">Visa alla recept</a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">{{- partial "search.html" . -}}</div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <div style="margin-bottom: 1em;">
+          {{ range .Site.Taxonomies.categories }}
+          <a class="tag is-warning is-light" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+          {{ end }}
+          {{ range .Site.Taxonomies.tags }}
+          <a class="tag is-primary is-light" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+          {{ end }}
+        </div>
+      </div>
+      {{ with .Site.Params.repo }}
+      <div class="column is-narrow">
+        <a class="button" href="{{ . }}/{{ site.Params.newpath }}/content/recipes" title="Nytt recept på GitHub" aria-label="Nytt recept">
+          <span class="icon is-small"><i class="fa fa-plus"></i></span>
+        </a>
+      </div>
+      {{ end }}
+    </div>
+
+    {{- $paginator := .Paginate (where .Site.RegularPages "Section" "recipes") }}
+    {{- partial "recipe-grid.html" $paginator }}
+    <div class="column is-centered">{{ partial "pagination.html" . }}</div>
+  </div>
+</section>
+{{ end }}
