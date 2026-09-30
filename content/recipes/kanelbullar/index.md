@@ -1,28 +1,30 @@
 ---
-title: "Kanelbullar"
+title: Kanelbullar
 date: 2026-09-30
-draft: false
-description: "Klassiska svenska kanelbullar med kardemumma i degen."
-image: ""
-categories: ["Bakning"]
-tags: ["fika", "jäst", "vegetariskt"]
+draft: true
+description: Klassiska svenska kanelbullar med kardemumma i degen.
+categories:
+  - Bakning
+tags:
+  - fika
+  - jäst
+  - vegetariskt
 servings: 30
 prepTime: 45
 cookTime: 10
 totalTime: 150
-difficulty: "medel"
+difficulty: medel
 ingredients:
-  - "50 g jäst"
-  - "5 dl mjölk"
-  - "150 g smör"
-  - "1 dl strösocker"
-  - "1/2 tsk salt"
-  - "2 tsk stött kardemumma"
-  - "ca 13 dl vetemjöl"
+  - 50 g jäst
+  - 5 dl mjölk
+  - 150 g smör
+  - 1 dl strösocker
+  - 1/2 tsk salt
+  - 2 tsk stött kardemumma
+  - ca 13 dl vetemjöl
   - "Fyllning: 100 g rumsvarmt smör, 1 dl strösocker, 1 msk kanel"
   - "Pensling: 1 ägg, pärlsocker"
 ---
-
 ## Gör så här
 
 1. Smält smöret och häll i mjölken. Värm till fingervarmt (37 °C).
