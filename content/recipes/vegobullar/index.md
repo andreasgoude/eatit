@@ -4,6 +4,7 @@ date: 2026-09-30
 draft: false
 description: "Vegetariska mysiga bollar. Går att göra veganska om man hoppar
   över smööööret. "
+image: /images/img1200.jpeg
 categories:
   - Middag
   - Lunch
@@ -27,7 +28,6 @@ ingredients:
   - salt, peppar, timjan
 ---
 1. **Mixa mandeln fint. Hacka lök och vitlök mycket smått. Skölj och mosa bönorna med en gaffel.**
-
 2. **Rör samman mandlar, lök, vitlök, bönor, ströbröd, ägg, soja och senap i en bunke. Låt massan vila i rumstemperatur ca 10 min.**
 3. **Rulla små bollar och låt dem vila ytterligare 5 min.**
 4. **Stek bollarna gyllene i smör i en stekpanna ca 5 min.**
