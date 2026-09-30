@@ -10,17 +10,27 @@ categories:
 servings: 4
 totalTime: 45
 difficulty: medel
-ingredients: |-
+ingredients: >-
   3dl kallt kokt ris
-  2 burkar tonfisk i olja. Det finns tonfisk med som ligger i olja med chili. Ta den.
+
+  2 burkar tonfisk i olja. Det finns tonfisk med som ligger i olja med chili. Ta
+  den.
+
   oljan från 1 burk tonfisk
+
   1-2 ägg
+
   2 hackade salladslökar
+
   1 chili, finhackad
+
   ½ burk kikärtor eller stora vita bönor. Mosade eller mixade.
+
   Hackad Koriander
+
   Bonus: puread majs är gott i smeten också.
-  Kryddor: fisksås, japansk soja, ostronsås, salt
+
+  Kryddor: fisksås, japansk soja, ostronsås, salt, sriracha
 ---
 Blanda ihop allt och stek i olja.
 
