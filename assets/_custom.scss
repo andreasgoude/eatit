@@ -59,3 +59,24 @@
   .navbar, .footer, .search-box, .recipe-footer .button { display: none !important; }
   .box { box-shadow: none; }
 }
+
+/* Svartvit och lite blekare bakgrund, för ett renare intryck. Temat lägger bilden
+   direkt på body. Ett filter där skulle påverka allt innehåll, så bilden flyttas
+   till ett eget lager bakom sidan. */
+body {
+  background-image: none;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url($body-background-image);
+  background-position: center center;
+  background-size: cover;
+  filter: grayscale(1);
+  opacity: 0.5;
+  pointer-events: none;
+}
