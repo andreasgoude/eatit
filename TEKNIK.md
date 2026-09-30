@@ -119,9 +119,11 @@ prepTime: 15        # minuter
 cookTime: 30
 totalTime: 45
 difficulty: medel   # enkel | medel | svår
-ingredients:
-  - 3 dl kallt kokt ris
-  - 2 burkar tonfisk i olja
+ingredients: |-
+  3 dl kallt kokt ris
+  2 burkar tonfisk i olja
+  Till servering:
+  lime
 ---
 Blanda ihop allt och stek i olja.
 ```
@@ -130,7 +132,7 @@ Blanda ihop allt och stek i olja.
 |---|---|---|
 | `title` | ja | Rubrik, sökning, kortet och JSON-LD |
 | `categories` | ja | Filter i sökningen, kategorisidor och `recipeCategory` |
-| `ingredients` | ja (minst en) | Ingredienslistan, portionsskalning och `recipeIngredient` |
+| `ingredients` | ja (minst en) | Ingredienslistan, portionsskalning och `recipeIngredient`. Flerradig text med en ingrediens per rad. En äldre YAML-lista fungerar också |
 | `servings` | ja (> 0) | Portionsväljaren och `recipeYield` |
 | `difficulty` | nej, men måste vara giltigt om det anges | Visas på kort och receptsida |
 | `image` | nej, men filen måste finnas om det anges | Kort, receptsida, sökträffar och JSON-LD |
@@ -139,6 +141,17 @@ Blanda ihop allt och stek i olja.
 | `prepTime`, `cookTime`, `totalTime` | nej | Tider i minuter. Visas som t.ex. "1 h 30 min" och som `PT90M` i JSON-LD |
 
 Vilka fält som är obligatoriska styrs av `layouts/_partials/validate-recipe.html` (se 5.4).
+
+### Ingredienser: från text till rader
+
+Ingredienserna lagras som **en flerradig text** (YAML `|-`), så att man kan klistra in en hel lista i Pages CMS. `layouts/_partials/recipe-ingredients.html` gör om texten till rader, och alla andra delar (receptsidan, JSON-LD och valideringen) använder den partialen:
+
+1. Texten delas upp på radbrytningar (en rad per retur).
+2. En punkt i början av raden (`-`, `*`, `•`, `·`, `–` …) tas bort, och raden trimmas.
+3. Tomma rader hoppas över.
+4. En rad som slutar med `:` och har högst 40 tecken blir en **underrubrik**, t.ex. "Fyllning:". Underrubriker visas som små versaler, skalas inte av portionsväljaren och räknas inte som ingredienser i JSON-LD eller i valideringen.
+
+Om fältet i stället är en YAML-lista (det äldre formatet) används listan som den är.
 
 ### Bilder: två platser
 
@@ -182,7 +195,7 @@ Sidan fungerar utan JavaScript, med undantag för sök och portionsskalning:
 | Skript | Källa | Vad det gör |
 |---|---|---|
 | `appearance.js` | Congo | Ljust/mörkt läge |
-| `servings.js` | Vårt. Hugo buntar och minifierar det med `js.Build` (esbuild), och filnamnet får ett hash-fingeravtryck | Läser den inledande mängden på varje ingrediensrad ("3dl", "1-2", "½", "ca 13 dl") och skalar den med faktorn nya/ursprungliga portioner. Avrundar till närmaste kvart och visar ¼ ½ ¾. Text längre in på raden, t.ex. "(400 g)", ändras inte |
+| `servings.js` | Vårt. Hugo buntar och minifierar det med `js.Build` (esbuild), och filnamnet får ett hash-fingeravtryck | Hoppar över underrubriker och läser den inledande mängden på varje ingrediensrad ("3dl", "1-2", "½", "ca 13 dl") och skalar den med faktorn nya/ursprungliga portioner. Avrundar till närmaste kvart och visar ¼ ½ ¾. Text längre in på raden, t.ex. "(400 g)", ändras inte |
 | `pagefind-ui.js` | Pagefind | Laddas bara på startsidan. Sökgränssnittet hämtar små bitar av indexet vid behov |
 
 ### 5.4 Receptvalidering
@@ -226,7 +239,7 @@ Hela indexet består av statiska filer. Ingen sökserver behövs.
 ### 6.1 Pages CMS (vardagsflödet)
 
 1. Man loggar in på app.pagescms.org med GitHub. Pages CMS har bara behörighet till de repon man har gett den åtkomst till.
-2. Pages CMS läser `.pages.yml` från repot och bygger ett formulär: textfält, datumväljare, kategoriväljare, listor för taggar och ingredienser, bilduppladdning och en textredigerare som sparar Markdown.
+2. Pages CMS läser `.pages.yml` från repot och bygger ett formulär: textfält, datumväljare, kategoriväljare, en lista för taggar, en textruta där hela ingredienslistan klistras in, bilduppladdning och en textredigerare som sparar Markdown.
 3. Nya recept sparas som `content/recipes/<slug>/index.md`. Sluggen skapas från titeln, t.ex. "Röd linssoppa" → `rod-linssoppa`, och filnamnsfältet är dolt så att mappstrukturen alltid blir rätt.
 4. **Varje sparning blir en commit direkt till `main`** via GitHubs API, t.ex. *"Create content/recipes/tonfiskbiffar/index.md (via Pages CMS)"*. Det startar deploy-workflowen.
 5. Bilder laddas upp till `assets/images/` som en egen commit.

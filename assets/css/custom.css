@@ -42,6 +42,7 @@ html.dark { --r-text: rgb(var(--color-neutral-100)); --r-muted: rgb(var(--color-
 .r-ingredients h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: .5rem; }
 .r-list-title { font-size: 2rem; font-weight: 800; }
 .r-card-title { font-weight: 700; }
-.r-foot { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--r-border); font-size: .85rem; color: var(--r-muted); }
+.r-foot { display: flex; justify-content: space-between; gap: 1rem; padding-right: 4rem; margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--r-border); font-size: .85rem; color: var(--r-muted); }
 .r-foot a { color: var(--r-accent); }
 @media print { .r-foot a { display: none; } }
+.ingredients li.ingredients-heading { border-bottom: none; padding: 1.1rem 0 .2rem; font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--r-muted); }

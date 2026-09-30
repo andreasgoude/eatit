@@ -1,4 +1,6 @@
 {{- /* schema.org/Recipe så att Google kan visa receptet som ett rikt resultat. */ -}}
+{{- $ingredients := slice -}}
+{{- range partial "recipe-ingredients.html" . }}{{ if not .heading }}{{ $ingredients = $ingredients | append .text }}{{ end }}{{ end -}}
 {{- $d := dict
   "@context" "https://schema.org"
   "@type" "Recipe"
@@ -6,7 +8,7 @@
   "description" (.Description | default .Summary | plainify)
   "datePublished" (.Date.Format "2006-01-02")
   "author" (dict "@type" "Person" "name" (site.Language.Params.author.name | default site.Title))
-  "recipeIngredient" (.Params.ingredients | default slice)
+  "recipeIngredient" $ingredients
   "recipeInstructions" (.Plain | strings.TrimSpace)
   "keywords" (delimit (.Params.tags | default slice) ", ")
 -}}

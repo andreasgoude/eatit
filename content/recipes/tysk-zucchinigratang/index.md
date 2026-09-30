@@ -8,18 +8,18 @@ categories:
   - Lunch
 servings: 3
 difficulty: enkel
-ingredients:
-  - 1 riven urvattnad zucchini
-  - 1 hackad gul lök
-  - "2 msk majonnäs "
-  - "½ dl dill "
-  - "2 råa ägg "
-  - Salt peppar
-  - 1 tonfiskburk
-  - 2 hackade kokta ägg
-  - 100g riven ost
-  - "1 tsk olivolja "
-  - Salt, peppar
+ingredients: |-
+  1 riven urvattnad zucchini
+  1 hackad gul lök
+  2 msk majonnäs
+  ½ dl dill
+  2 råa ägg
+  Salt peppar
+  1 tonfiskburk
+  2 hackade kokta ägg
+  100g riven ost
+  1 tsk olivolja
+  Salt, peppar
 ---
 En liten form olja och häv på ströbröd eller panko.
 

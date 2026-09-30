@@ -1,0 +1,23 @@
+{{- /* Gör om fältet "ingredients" till en lista med rader. Returnerar en slice med
+       dict "text" <rad> "heading" <bool>.
+
+       Fältet kan vara en flerradig text (så sparar Pages CMS det: en ingrediens per rad)
+       eller en YAML-lista (äldre format). Tomma rader hoppas över, och punkter i början
+       av raden ("- ", "• ", "* ") tas bort, så att man kan klistra in listor från webben.
+       En kort rad som slutar med kolon ("Fyllning:") blir en underrubrik som inte skalas. */ -}}
+{{- $raw := .Params.ingredients -}}
+{{- $lines := slice -}}
+{{- if reflect.IsSlice $raw -}}
+  {{- $lines = $raw -}}
+{{- else if $raw -}}
+  {{- $lines = split (string $raw) "\n" -}}
+{{- end -}}
+{{- $out := slice -}}
+{{- range $lines -}}
+  {{- $l := . | string | replaceRE `^\s*[-*•·▪◦–](\s+|$)` "" | strings.TrimSpace -}}
+  {{- with $l -}}
+    {{- $isHeading := and (strings.HasSuffix . ":") (le (strings.RuneCount .) 40) -}}
+    {{- $out = $out | append (dict "text" (cond $isHeading (strings.TrimSuffix ":" .) .) "heading" $isHeading) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

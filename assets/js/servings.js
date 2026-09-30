@@ -27,7 +27,7 @@ function format(n) {
 function setup(control) {
   const base = Number(control.dataset.servings);
   const input = control.querySelector("input");
-  const items = [...control.parentElement.querySelectorAll(".ingredients li")].map((li) => ({
+  const items = [...control.parentElement.querySelectorAll(".ingredients li:not(.ingredients-heading)")].map((li) => ({
     li,
     html: li.innerHTML,
     match: li.innerHTML.match(QTY),

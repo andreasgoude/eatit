@@ -80,9 +80,12 @@ content:
           values: [enkel, medel, svår]
       - name: ingredients
         label: Ingredienser
-        description: "En ingrediens per rad, t.ex. \"2 dl mjölk\""
-        type: string
-        list: true
+        description: >-
+          Klistra in hela listan, en ingrediens per rad (t.ex. "2 dl mjölk").
+          Punkter i början av raden tas bort automatiskt. En rad som slutar med kolon,
+          t.ex. "Fyllning:", blir en underrubrik.
+        type: text
+        required: true
       - name: body
         label: Gör så här
         type: rich-text

@@ -12,8 +12,9 @@ prepTime: 0           # minuter
 cookTime: 0           # minuter
 totalTime: 0          # minuter
 difficulty: "enkel"   # enkel | medel | svår
-ingredients:
-  - ""
+# En ingrediens per rad. En rad som slutar med kolon ("Fyllning:") blir en underrubrik.
+ingredients: |-
+  2 dl mjölk
 ---
 
 ## Gör så här

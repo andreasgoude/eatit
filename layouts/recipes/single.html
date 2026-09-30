@@ -21,7 +21,7 @@
     </div>
   </header>
   <div class="r-body">
-    {{ with .Params.ingredients }}
+    {{ with partial "recipe-ingredients.html" . }}
     <aside class="r-ingredients">
       <h2>Ingredienser</h2>
       {{ with $.Params.servings }}
@@ -32,7 +32,12 @@
         <span>portioner</span>
       </div>
       {{ end }}
-      <ul class="ingredients">{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+      <ul class="ingredients">
+        {{- range . }}
+        {{- if .heading }}<li class="ingredients-heading">{{ .text | markdownify }}</li>
+        {{- else }}<li>{{ .text | markdownify }}</li>{{ end }}
+        {{- end }}
+      </ul>
     </aside>
     {{ end }}
     <div class="r-steps {{ site.Params.proseClass }}">{{ .Content }}</div>
