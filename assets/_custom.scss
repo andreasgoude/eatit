@@ -80,3 +80,32 @@ body::before {
   opacity: 0.5;
   pointer-events: none;
 }
+
+.servings-control {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.25rem 0 0.75rem;
+  color: #666;
+
+  input {
+    width: 3.5rem;
+    text-align: center;
+    padding: 0.2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font: inherit;
+  }
+}
+
+/* Pagefind-sökningen, anpassad till temat. */
+.recipe-search {
+  max-width: 40rem;
+  margin: 0 auto 1.5rem;
+  --pagefind-ui-primary: #00947e;
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-font: inherit;
+  --pagefind-ui-image-border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 8px;
+}

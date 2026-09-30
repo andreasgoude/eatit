@@ -1,9 +1,23 @@
-<div class="field has-addons has-addons-centered search-box dropdown">
-  <div class="control">
-    <input class="input dropdown-trigger" type="search" id="search-input" placeholder="Sök recept …" aria-label="Sök recept" />
-  </div>
-  <div class="search-spinner hidden"></div>
-  <div class="dropdown-wrapper mt-6">
-    <div class="dropdown-content" id="search-results"></div>
-  </div>
-</div>
+{{- /* Fulltextsök med Pagefind (https://pagefind.app). Indexet skapas efter Hugo-bygget,
+       i Actions eller med "npm run dev" lokalt. Språket (svenska) läses från <html lang>. */ -}}
+<div id="search" class="recipe-search"></div>
+<p id="search-missing" class="has-text-centered has-text-grey is-size-7" hidden>
+  Sökindexet saknas. Starta med <code>npm run dev</code> för att prova sökningen lokalt.
+</p>
+<script>
+  (function () {
+    var s = document.createElement("script");
+    s.src = "{{ "pagefind/pagefind-ui.js" | relURL }}";
+    s.onload = function () {
+      new PagefindUI({
+        element: "#search",
+        showSubResults: false,
+        showImages: true,
+        resetStyles: false,
+        translations: { placeholder: "Sök bland recepten …", zero_results: "Inga recept matchar [SEARCH_TERM]" }
+      });
+    };
+    s.onerror = function () { document.getElementById("search-missing").hidden = false; };
+    document.head.appendChild(s);
+  })();
+</script>

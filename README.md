@@ -16,9 +16,14 @@ Mer om bakgrunden och planen finns i [SPEC.md](SPEC.md).
 ```bash
 git clone --recurse-submodules https://github.com/andreasgoude/eatit.git
 cd eatit
+npm install                             # installerar Pagefind (sökningen)
 hugo new recipes/mitt-recept/index.md   # skapar en fil från mallen
-hugo server -D                          # förhandsvisning på http://localhost:1313/eatit/
+npm run dev                             # förhandsvisning med sök på http://localhost:1313/eatit/
 ```
+
+`hugo server -D` fungerar också, men då saknas sökningen. Sökindexet byggs av Pagefind efter Hugo, och `npm run dev` gör båda stegen.
+
+**Tidsinställa ett recept:** sätt `date` till en dag framåt i tiden. Sidan byggs om varje morgon, och receptet dyker upp på det datumet.
 
 Lägg en bild i samma mapp som receptet, t.ex. `cover.jpg`, och skriv `image: cover.jpg` i front matter. Hugo beskär bilden och gör om den till WebP.
 
@@ -42,6 +47,9 @@ Själva instruktionerna skrivs i Markdown under front matter.
 
 - En pull request kör [.github/workflows/ci.yml](.github/workflows/ci.yml): ett strikt bygge, validering av alla recept och kontroll av interna länkar.
 - Ett recept som saknar obligatoriska fält stoppar bygget med ett tydligt fel, både lokalt och i Actions. Reglerna finns i `layouts/partials/validate-recipe.html`. Om deployen stoppas ligger den förra versionen av sidan kvar.
-- Dependabot föreslår uppdateringar av actions och tema varje vecka.
+- Sökningen görs med [Pagefind](https://pagefind.app). Det söker i hela receptet (ingredienser och instruktioner), förstår svenska och kan filtrera på kategori. Indexet byggs i Actions efter Hugo.
+- På receptsidorna kan man ändra antalet portioner, och då räknas mängderna om ([assets/js/servings.js](assets/js/servings.js)). Bara mängden i början av raden skalas, så t.ex. "(400 g)" längre in lämnas orört.
+- Deployen körs också varje morgon kl 04:00 UTC, så att tidsinställda recept publiceras. Efter varje deploy mäter Lighthouse prestanda, tillgänglighet och SEO.
+- Dependabot föreslår uppdateringar av actions, tema och Pagefind varje vecka.
 - En push till `main` kör [.github/workflows/deploy.yml](.github/workflows/deploy.yml), som bygger sidan med Hugo och publicerar den på GitHub Pages.
 - Temat ligger som git submodule i `themes/hugo-cuisine-book`. Våra anpassningar (svenska texter, receptlayout, JSON-LD för Google) finns i `layouts/` och `assets/_custom.scss`.

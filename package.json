@@ -1,0 +1,12 @@
+{
+  "name": "eatit",
+  "private": true,
+  "description": "Verktyg för eatit. Själva sidan byggs med Hugo, npm används bara för Pagefind.",
+  "scripts": {
+    "build": "hugo --gc --minify && pagefind --site public",
+    "dev": "hugo --gc --quiet && pagefind --site public --output-path static/pagefind && hugo server -D"
+  },
+  "devDependencies": {
+    "pagefind": "1.5.2"
+  }
+}

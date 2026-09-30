@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Bygg om varje morgon. Då publiceras recept med ett framtida datum automatiskt när dagen kommer.
+  schedule:
+    - cron: "0 4 * * *"   # 04:00 UTC = 05:00/06:00 svensk tid
 
 permissions:
   contents: read
@@ -35,6 +38,15 @@ jobs:
       - name: Setup Hugo
         uses: ./.github/actions/setup-hugo
 
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install Pagefind
+        run: npm ci
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v6
@@ -45,6 +57,9 @@ jobs:
         run: |
           hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
+      - name: Build search index
+        run: npx pagefind --site public
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
@@ -53,6 +68,8 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -60,3 +77,23 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+  # Mäter prestanda, tillgänglighet, bästa praxis och SEO på den publicerade sidan.
+  # Rapporten laddas upp som artefakt och som tillfällig publik länk (syns i jobbets logg).
+  # Jobbet kan bli rött, men deployen är redan klar när det körs.
+  lighthouse:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            ${{ needs.deploy.outputs.page_url }}
+            ${{ needs.deploy.outputs.page_url }}recipes/kanelbullar/
+          configPath: ./.github/lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
