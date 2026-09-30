@@ -1,25 +1,27 @@
 ---
-title: "Pasta carbonara"
+title: Pasta carbonara
 date: 2026-09-29
-draft: false
-description: "Krämig carbonara utan grädde – bara ägg, ost och guanciale."
-image: ""
-categories: ["Middag"]
-tags: ["pasta", "snabbt", "italienskt"]
+draft: true
+description: Krämig carbonara utan grädde – bara ägg, ost och guanciale.
+categories:
+  - Middag
+tags:
+  - pasta
+  - snabbt
+  - italienskt
 servings: 4
 prepTime: 10
 cookTime: 15
 totalTime: 25
-difficulty: "enkel"
+difficulty: enkel
 ingredients:
-  - "400 g spaghetti"
-  - "150 g guanciale eller pancetta"
-  - "4 äggulor + 1 helt ägg"
-  - "1 dl riven pecorino romano"
-  - "Nymalen svartpeppar"
-  - "Salt till pastavattnet"
+  - 400 g spaghetti
+  - 150 g guanciale eller pancetta
+  - 4 äggulor + 1 helt ägg
+  - 1 dl riven pecorino romano
+  - Nymalen svartpeppar
+  - Salt till pastavattnet
 ---
-
 ## Gör så här
 
 1. Koka pastan i rikligt med saltat vatten.
