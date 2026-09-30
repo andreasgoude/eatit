@@ -7,6 +7,8 @@ Mer om bakgrunden och planen finns i [SPEC.md](SPEC.md).
 
 ## Lägga till ett recept
 
+**Med Pages CMS (enklast, fungerar även i mobilen):** gå till [app.pagescms.org](https://app.pagescms.org), logga in med GitHub och välj `andreasgoude/eatit` → *Recept* → *Add an entry*. Fyll i formuläret och spara. Varje sparning blir en commit, och sidan uppdateras efter ungefär en minut. Uppladdade bilder hamnar i `assets/images/`. Formuläret definieras i [.pages.yml](.pages.yml).
+
 **På GitHub (utan att installera något):** gå till `content/recipes/`, välj *Add file → Create new file* och skriv `mitt-recept/index.md` som filnamn. Kopiera in mallen från [archetypes/recipes.md](archetypes/recipes.md), fyll i den, sätt `draft: false` och committa. Sidan uppdateras automatiskt efter ungefär en minut.
 
 **Lokalt:**

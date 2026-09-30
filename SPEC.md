@@ -165,11 +165,11 @@ Det här är projektets "lekplats". Planen byggs upp stegvis, från enkelt till 
 
 | Fas | Innehåll | Klart när |
 |---|---|---|
-| 0 | Skapa repo, `hugo new site`, `.gitignore`, README | Sidan startar lokalt |
-| 1 | Theme-spike (Quiet Foodie vs Cuisine Book), välj ett | 3 recept ser bra ut lokalt |
-| 2 | Archetype för recept och front matter-modell | `hugo new recipes/x/index.md` ger en komplett mall |
-| 3 | `deploy.yml` och aktivera Pages | Sidan är live på `github.io` |
-| 4 | Pages CMS (`.pages.yml`) | Ett recept kan läggas in från mobilen |
+| 0 ✅ | Skapa repo, `hugo new site`, `.gitignore`, README | Sidan startar lokalt |
+| 1 ✅ | Theme-spike (Quiet Foodie vs Cuisine Book), välj ett | 3 recept ser bra ut lokalt |
+| 2 ✅ | Archetype för recept och front matter-modell | `hugo new recipes/x/index.md` ger en komplett mall |
+| 3 ✅ | `deploy.yml` och aktivera Pages | Sidan är live på `github.io` |
+| 4 ✅ | Pages CMS (`.pages.yml`) | Ett recept kan läggas in från mobilen |
 | 5 | `ci.yml` (bygge, länkkontroll, front matter-validering) och Dependabot | PR:er får grön eller röd status |
 | 6 | Pagefind-sök, schemalagd build, övriga förbättringar | – |
 
@@ -181,4 +181,5 @@ Det här är projektets "lekplats". Planen byggs upp stegvis, från enkelt till 
 | Språk | Bara svenska (`languageCode = "sv-SE"`) |
 | Innehåll | Bara recept, inga vanliga blogginlägg |
 | Import av befintliga recept | Nej, vi börjar från noll med några exempelrecept |
+| Bilder från CMS | Pages CMS har en gemensam mediamapp, `assets/images/`. Mallarna letar först efter bilden i receptets mapp och sedan i `assets/`, så båda sätten fungerar och Hugo optimerar bilden i båda fallen. |
 | Theme | **Cuisine Book**, som git submodule. Quiet Foodie bygger inte på Hugo 0.167 (det använder `.Site.Author`, som har tagits bort) och har inte uppdaterats sedan 2024. Cuisine Book underhålls och har sök. Receptlayout, svenska texter och JSON-LD ligger som egna overrides i `layouts/`. |

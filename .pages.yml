@@ -1,0 +1,88 @@
+# Konfiguration för Pages CMS (https://pagescms.org).
+# Logga in på app.pagescms.org med GitHub och välj repot andreasgoude/eatit.
+
+media:
+  input: assets/images     # där bilderna hamnar i repot
+  output: /images          # så här skrivs sökvägen i front matter (mallarna hittar den via assets/)
+  extensions: [jpg, jpeg, png, webp]
+  rename: safe
+
+content:
+  - name: recipes
+    label: Recept
+    type: collection
+    path: content/recipes
+    format: yaml-frontmatter
+    exclude: [_index.md]
+    # Hugo page bundle: varje recept blir content/recipes/<slug>/index.md
+    filename:
+      template: "{primary}/index.md"
+      field: false
+    view:
+      layout: tree
+      node:
+        filename: index.md
+        hideDirs: nodes
+      fields: [title, categories, draft, date]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Namn
+        type: string
+        required: true
+      - name: date
+        label: Datum
+        type: date
+        default: now
+      - name: draft
+        label: Utkast (syns inte på sidan)
+        type: boolean
+        default: false
+      - name: description
+        label: Kort beskrivning
+        type: text
+      - name: image
+        label: Bild
+        type: image
+      - name: categories
+        label: Kategori
+        type: select
+        options:
+          multiple: true
+          values: [Frukost, Lunch, Middag, Soppa, Sallad, Bakning, Dessert, Tillbehör, Dryck]
+      - name: tags
+        label: Taggar
+        description: "T.ex. vegetariskt, snabbt, italienskt"
+        type: string
+        list: true
+      - name: servings
+        label: Portioner
+        type: number
+        default: 4
+      - name: prepTime
+        label: Förberedelse (min)
+        type: number
+      - name: cookTime
+        label: Tillagning (min)
+        type: number
+      - name: totalTime
+        label: Total tid (min)
+        type: number
+      - name: difficulty
+        label: Svårighetsgrad
+        type: select
+        default: enkel
+        options:
+          values: [enkel, medel, svår]
+      - name: ingredients
+        label: Ingredienser
+        description: "En ingrediens per rad, t.ex. \"2 dl mjölk\""
+        type: string
+        list: true
+      - name: body
+        label: Gör så här
+        type: rich-text

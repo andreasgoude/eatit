@@ -15,5 +15,5 @@
 {{- with .Params.prepTime }}{{ $d = merge $d (dict "prepTime" (printf "PT%vM" .)) }}{{ end -}}
 {{- with .Params.cookTime }}{{ $d = merge $d (dict "cookTime" (printf "PT%vM" .)) }}{{ end -}}
 {{- with .Params.totalTime }}{{ $d = merge $d (dict "totalTime" (printf "PT%vM" .)) }}{{ end -}}
-{{- with .Params.image }}{{ with $.Resources.GetMatch . }}{{ $d = merge $d (dict "image" (.Fill "1200x900 webp").Permalink) }}{{ end }}{{ end -}}
+{{- with partial "recipe-image-resource.html" . }}{{ $d = merge $d (dict "image" (.Fill "1200x900 webp").Permalink) }}{{ end -}}
 <script type="application/ld+json">{{ $d | jsonify | safeJS }}</script>
