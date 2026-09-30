@@ -1,0 +1,64 @@
+# Kontrollerar pull requests innan de mergas: strikt bygge, validering av recept och länkkontroll.
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# En ny push till samma PR avbryter den körning som redan pågår.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Stockholm
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: ./.github/actions/setup-hugo
+
+      # --panicOnWarning gör varningar (t.ex. föråldrade funktioner) till fel.
+      # Receptvalideringen (layouts/partials/validate-recipe.html) körs som en del av bygget.
+      - name: Build (strict)
+        run: hugo --gc --minify --panicOnWarning --baseURL "https://andreasgoude.github.io/eatit/"
+
+      # Sidan ligger under /eatit/ på GitHub Pages, så bygget kopieras till en mapp med samma struktur.
+      - name: Prepare link check
+        run: mkdir -p _linkcheck && cp -r public _linkcheck/eatit
+
+      # Kontrollerar interna länkar mot de byggda filerna. Externa länkar hoppas över (--offline),
+      # så att CI inte går sönder när en annan sajt ligger nere.
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --offline
+            --no-progress
+            --root-dir "${{ github.workspace }}/_linkcheck"
+            --remap "https://andreasgoude.github.io/ file://${{ github.workspace }}/_linkcheck/"
+            --index-files index.html
+            '_linkcheck/**/*.html'
+          fail: true
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### Bygge"
+            echo ""
+            echo "| | Antal |"
+            echo "|---|---|"
+            echo "| Recept | $(find content/recipes -name index.md | wc -l) |"
+            echo "| Utkast | $(grep -l '^draft: true' content/recipes/*/index.md 2>/dev/null | wc -l) |"
+            echo "| HTML-sidor | $(find public -name '*.html' 2>/dev/null | wc -l) |"
+          } >> "$GITHUB_STEP_SUMMARY"

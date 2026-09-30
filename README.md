@@ -40,5 +40,8 @@ Själva instruktionerna skrivs i Markdown under front matter.
 
 ## Hur det fungerar
 
+- En pull request kör [.github/workflows/ci.yml](.github/workflows/ci.yml): ett strikt bygge, validering av alla recept och kontroll av interna länkar.
+- Ett recept som saknar obligatoriska fält stoppar bygget med ett tydligt fel, både lokalt och i Actions. Reglerna finns i `layouts/partials/validate-recipe.html`. Om deployen stoppas ligger den förra versionen av sidan kvar.
+- Dependabot föreslår uppdateringar av actions och tema varje vecka.
 - En push till `main` kör [.github/workflows/deploy.yml](.github/workflows/deploy.yml), som bygger sidan med Hugo och publicerar den på GitHub Pages.
 - Temat ligger som git submodule i `themes/hugo-cuisine-book`. Våra anpassningar (svenska texter, receptlayout, JSON-LD för Google) finns i `layouts/` och `assets/_custom.scss`.

@@ -1,0 +1,18 @@
+# Återanvändbar action som installerar Hugo Extended. Används av både deploy.yml och ci.yml,
+# så att Hugo-versionen bara behöver ändras på ett ställe.
+name: Setup Hugo
+description: Installerar Hugo Extended på en Ubuntu-runner
+inputs:
+  version:
+    description: Hugo-version utan "v"
+    default: "0.167.0"
+runs:
+  using: composite
+  steps:
+    - name: Install Hugo Extended ${{ inputs.version }}
+      shell: bash
+      run: |
+        wget -qO "${{ runner.temp }}/hugo.deb" \
+          "https://github.com/gohugoio/hugo/releases/download/v${{ inputs.version }}/hugo_extended_${{ inputs.version }}_linux-amd64.deb"
+        sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+        hugo version
