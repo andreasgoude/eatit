@@ -26,6 +26,8 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      recipe_path: ${{ steps.latest.outputs.path }}
     env:
       TZ: Europe/Stockholm
     steps:
@@ -60,6 +62,17 @@ jobs:
       - name: Build search index
         run: npx pagefind --site public
 
+      # Senaste publicerade receptet, som Lighthouse testar (t.ex. "recipes/tonfiskbiffar/").
+      - name: Find latest recipe
+        id: latest
+        run: |
+          path=$(hugo list published | python3 -c '
+          import csv, sys
+          rows = [r for r in csv.DictReader(sys.stdin) if r["kind"] == "page" and r["section"] == "recipes"]
+          print(max(rows, key=lambda r: r["date"])["permalink"].split("/eatit/", 1)[1] if rows else "")
+          ')
+          echo "path=$path" >> "$GITHUB_OUTPUT"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
@@ -82,7 +95,7 @@ jobs:
   # Rapporten laddas upp som artefakt och som tillfällig publik länk (syns i jobbets logg).
   # Jobbet kan bli rött, men deployen är redan klar när det körs.
   lighthouse:
-    needs: deploy
+    needs: [build, deploy]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -93,7 +106,7 @@ jobs:
         with:
           urls: |
             ${{ needs.deploy.outputs.page_url }}
-            ${{ needs.deploy.outputs.page_url }}recipes/kanelbullar/
+            ${{ needs.deploy.outputs.page_url }}${{ needs.build.outputs.recipe_path }}
           configPath: ./.github/lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
