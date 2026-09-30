@@ -14,16 +14,21 @@ prepTime: 45
 cookTime: 10
 totalTime: 150
 difficulty: medel
-ingredients:
-  - 50 g jäst
-  - 5 dl mjölk
-  - 150 g smör
-  - 1 dl strösocker
-  - 1/2 tsk salt
-  - 2 tsk stött kardemumma
-  - ca 13 dl vetemjöl
-  - "Fyllning: 100 g rumsvarmt smör, 1 dl strösocker, 1 msk kanel"
-  - "Pensling: 1 ägg, pärlsocker"
+ingredients: |-
+  50 g jäst
+  5 dl mjölk
+  150 g smör
+  1 dl strösocker
+  1/2 tsk salt
+  2 tsk stött kardemumma
+  ca 13 dl vetemjöl
+  Fyllning:
+  100 g rumsvarmt smör
+  1 dl strösocker
+  1 msk kanel
+  Pensling:
+  1 ägg
+  pärlsocker
 ---
 ## Gör så här
 

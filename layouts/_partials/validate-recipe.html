@@ -4,8 +4,7 @@
 {{- $p := .Params -}}
 {{- if not (strings.TrimSpace .Title) }}{{ errorf "Receptet %s saknar title" $f }}{{ end -}}
 {{- if not $p.categories }}{{ errorf "Receptet %s saknar categories (t.ex. [\"Middag\"])" $f }}{{ end -}}
-{{- $ingredients := slice -}}
-{{- range $p.ingredients }}{{ with strings.TrimSpace . }}{{ $ingredients = $ingredients | append . }}{{ end }}{{ end -}}
+{{- $ingredients := where (partial "recipe-ingredients.html" .) "heading" false -}}
 {{- if not $ingredients }}{{ errorf "Receptet %s saknar ingredients" $f }}{{ end -}}
 {{- if not (gt (int ($p.servings | default 0)) 0) }}{{ errorf "Receptet %s saknar servings (antal portioner)" $f }}{{ end -}}
 {{- with $p.difficulty }}{{ if not (in (slice "enkel" "medel" "svår") .) }}{{ errorf "Receptet %s har okänd difficulty %q (enkel, medel eller svår)" $f . }}{{ end }}{{ end -}}

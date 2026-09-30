@@ -14,13 +14,13 @@ prepTime: 10
 cookTime: 15
 totalTime: 25
 difficulty: enkel
-ingredients:
-  - 400 g spaghetti
-  - 150 g guanciale eller pancetta
-  - 4 äggulor + 1 helt ägg
-  - 1 dl riven pecorino romano
-  - Nymalen svartpeppar
-  - Salt till pastavattnet
+ingredients: |-
+  400 g spaghetti
+  150 g guanciale eller pancetta
+  4 äggulor + 1 helt ägg
+  1 dl riven pecorino romano
+  Nymalen svartpeppar
+  Salt till pastavattnet
 ---
 ## Gör så här
 

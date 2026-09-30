@@ -38,7 +38,7 @@ Lägg en bild i samma mapp som receptet, t.ex. `cover.jpg`, och skriv `image: co
 | `servings` | Antal portioner |
 | `prepTime`, `cookTime`, `totalTime` | Tider i minuter |
 | `difficulty` | `enkel`, `medel` eller `svår` |
-| `ingredients` | En lista med en ingrediens per rad |
+| `ingredients` | En ingrediens per rad. Klistra gärna in en hel lista: punkter (`-`, `•`, `*`) tas bort och tomma rader hoppas över. En kort rad som slutar med kolon, t.ex. `Fyllning:`, blir en underrubrik som inte skalas |
 | `draft` | `true` döljer receptet på den publicerade sidan |
 
 Själva instruktionerna skrivs i Markdown under front matter.
