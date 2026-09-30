@@ -2,7 +2,7 @@
 title: Förkylningsmacka
 date: 2026-09-30
 draft: false
-description: "När man behöver döda bakterier och skrämma personer i sin närhet "
+description: När man behöver döda bakterier och skrämma personer i sin närhet i samma tugga
 image: /images/img1201.jpeg
 categories:
   - Frukost
@@ -21,4 +21,4 @@ ingredients:
 ---
 Bred smörgås med smör och därefter honung. 
 
-Skiva chili och vitlök så fint det går och fördela över mackan. 
+Skiva chili och vitlök så fint det går och fördela över mackan. Givetvis kan man ta mer chili.
