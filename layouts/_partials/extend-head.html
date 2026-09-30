@@ -1,0 +1,2 @@
+{{- /* Congo tar med den här filen i <head>. */ -}}
+{{- if and .IsPage (eq .Section "recipes") }}{{ partial "recipe-jsonld.html" . }}{{ end }}

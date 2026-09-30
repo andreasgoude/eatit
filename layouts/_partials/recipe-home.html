@@ -1,0 +1,8 @@
+<section class="r-home">
+  {{ with .Content }}<div class="r-intro">{{ . }}</div>{{ end }}
+  {{ partial "recipe-search.html" . }}
+  <div class="r-chips">
+    {{ range site.Taxonomies.categories }}<a class="r-chip" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>{{ end }}
+  </div>
+  {{ partial "recipe-grid.html" (where site.RegularPages "Section" "recipes") }}
+</section>

@@ -1,6 +1,6 @@
 # eatit
 
-En receptsida byggd med [Hugo](https://gohugo.io) och temat [Cuisine Book](https://github.com/ntk148v/hugo-cuisine-book). Den publiceras på GitHub Pages:
+En receptsida byggd med [Hugo](https://gohugo.io) och temat [Congo](https://github.com/jpanther/congo), med mörkt läge som följer systemet. Den publiceras på GitHub Pages:
 **https://andreasgoude.github.io/eatit/**
 
 Mer om bakgrunden och planen finns i [SPEC.md](SPEC.md).
@@ -52,4 +52,4 @@ Själva instruktionerna skrivs i Markdown under front matter.
 - Deployen körs också varje morgon kl 04:00 UTC, så att tidsinställda recept publiceras. Efter varje deploy mäter Lighthouse prestanda, tillgänglighet och SEO.
 - Dependabot föreslår uppdateringar av actions, tema och Pagefind varje vecka.
 - En push till `main` kör [.github/workflows/deploy.yml](.github/workflows/deploy.yml), som bygger sidan med Hugo och publicerar den på GitHub Pages.
-- Temat ligger som git submodule i `themes/hugo-cuisine-book`. Våra anpassningar (svenska texter, receptlayout, JSON-LD för Google) finns i `layouts/` och `assets/_custom.scss`.
+- Temat ligger som git submodule i `themes/congo`. Receptdelen är vår egen och fungerar oberoende av temat: startsidan med rutnät, korten, receptsidan och JSON-LD för Google finns i `layouts/`, och stilarna i `assets/css/custom.css`. Färgerna tas från temats färgschema via `--r-*`-variabler, så ljust och mörkt läge fungerar automatiskt. Färgschemat byts med `colorScheme` i `hugo.toml`.

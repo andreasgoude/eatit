@@ -1,0 +1,13 @@
+<a class="r-card" href="{{ .RelPermalink }}">
+  <div class="r-card-img">
+    {{ with partial "recipe-image-resource.html" . }}
+    {{ $img := .Fill "480x320 webp q75 Center" }}
+    <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy" />
+    {{ end }}
+  </div>
+  <div class="r-card-body">
+    <h2 class="r-card-title">{{ .Title }}</h2>
+    {{ partial "recipe-meta.html" . }}
+    {{ with .Description }}<p class="r-card-desc">{{ . }}</p>{{ end }}
+  </div>
+</a>

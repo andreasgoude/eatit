@@ -1,0 +1,5 @@
+<ul class="r-meta">
+  {{ with .Params.totalTime }}<li>{{ partial "duration.html" . }}</li>{{ end }}
+  {{ with .Params.servings }}<li>{{ . }} port.</li>{{ end }}
+  {{ with .Params.difficulty }}<li>{{ . }}</li>{{ end }}
+</ul>

@@ -5,7 +5,7 @@
   "name" .Title
   "description" (.Description | default .Summary | plainify)
   "datePublished" (.Date.Format "2006-01-02")
-  "author" (dict "@type" "Person" "name" site.Params.author)
+  "author" (dict "@type" "Person" "name" (site.Language.Params.author.name | default site.Title))
   "recipeIngredient" (.Params.ingredients | default slice)
   "recipeInstructions" (.Plain | strings.TrimSpace)
   "keywords" (delimit (.Params.tags | default slice) ", ")

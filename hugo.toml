@@ -1,26 +1,56 @@
 baseURL = "https://andreasgoude.github.io/eatit/"
-locale = "sv-SE"
 defaultContentLanguage = "sv"
+disableLanguages = ["en"]   # Congo har en engelsk språkkonfiguration som vi inte använder
 title = "eatit"
-theme = "hugo-cuisine-book"
+theme = "congo"
 enableGitInfo = false
 enableRobotsTXT = true
 
 [pagination]
-  pagerSize = 12
-
-[params]
-  author = "Andreas Goude"
-  description = "Recept som vi lagar om och om igen."
-  # Pennan på receptsidan och plustecknet på startsidan länkar hit.
-  repo = "https://github.com/andreasgoude/eatit"
-  editpath = "edit/main"
-  newpath = "new/main"
-  comment = false
+  pagerSize = 24
 
 [taxonomies]
   category = "categories"
   tag = "tags"
 
-[markup.goldmark.renderer]
-  unsafe = false
+[languages.sv]
+  locale = "sv-SE"
+  title = "eatit"
+  weight = 1
+  [languages.sv.params.author]
+    name = "Andreas Goude"
+
+[params]
+  description = "Recept som vi lagar om och om igen."
+  # Länken "Redigera på GitHub" på receptsidorna
+  repo = "https://github.com/andreasgoude/eatit"
+  editpath = "edit/main"
+
+  # Congo: färgschema och mörkt läge
+  colorScheme = "avocado"     # congo, avocado, cherry, fire, ocean, sapphire, slate
+  defaultAppearance = "light"
+  autoSwitchAppearance = true # följer systemets ljust/mörkt tills man väljer själv
+  enableSearch = false        # vi använder Pagefind i stället
+  enableImageWebp = true
+  # Typografi för instruktionerna på receptsidan (Tailwind-klasser från Congo)
+  proseClass = "prose dark:prose-invert max-w-none"
+
+  [params.header]
+    layout = "basic"
+    showTitle = true
+  [params.footer]
+    showAppearanceSwitcher = true
+    showThemeAttribution = true
+    showCopyright = false
+    showScrollToTop = true
+  [params.homepage]
+    layout = "page"
+
+[[menus.main]]
+  name = "Recept"
+  pageRef = "/recipes"
+  weight = 1
+[[menus.main]]
+  name = "Kategorier"
+  pageRef = "/categories"
+  weight = 2

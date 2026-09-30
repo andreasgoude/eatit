@@ -1,6 +1,0 @@
-{{- /* Params: dict "page" <sida> "size" "600x600" "class" "...". Beskär bilden och gör om den till WebP. */ -}}
-{{- $p := .page -}}
-{{- with partial "recipe-image-resource.html" $p -}}
-  {{- $img := .Fill (printf "%s webp q80 Center" $.size) -}}
-  <img alt="{{ $p.Title }}" class="{{ $.class }}" src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" />
-{{- end -}}
