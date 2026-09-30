@@ -1,0 +1,13 @@
+{{- /* Stoppar bygget med ett tydligt felmeddelande om ett recept saknar obligatoriska fält.
+       Körs för varje receptsida, både lokalt (hugo server) och i GitHub Actions. */ -}}
+{{- $f := .File.Path -}}
+{{- $p := .Params -}}
+{{- if not (strings.TrimSpace .Title) }}{{ errorf "Receptet %s saknar title" $f }}{{ end -}}
+{{- if not $p.categories }}{{ errorf "Receptet %s saknar categories (t.ex. [\"Middag\"])" $f }}{{ end -}}
+{{- $ingredients := slice -}}
+{{- range $p.ingredients }}{{ with strings.TrimSpace . }}{{ $ingredients = $ingredients | append . }}{{ end }}{{ end -}}
+{{- if not $ingredients }}{{ errorf "Receptet %s saknar ingredients" $f }}{{ end -}}
+{{- if not (gt (int ($p.servings | default 0)) 0) }}{{ errorf "Receptet %s saknar servings (antal portioner)" $f }}{{ end -}}
+{{- with $p.difficulty }}{{ if not (in (slice "enkel" "medel" "svår") .) }}{{ errorf "Receptet %s har okänd difficulty %q (enkel, medel eller svår)" $f . }}{{ end }}{{ end -}}
+{{- range slice "prepTime" "cookTime" "totalTime" }}{{ with index $p (lower .) }}{{ if lt (int .) 0 }}{{ errorf "Receptet %s: tiden kan inte vara negativ" $f }}{{ end }}{{ end }}{{ end -}}
+{{- with $p.image }}{{ if not (partial "recipe-image-resource.html" $) }}{{ errorf "Receptet %s: bilden %q hittades varken i receptets mapp eller i assets/" $f . }}{{ end }}{{ end -}}

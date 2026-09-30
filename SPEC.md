@@ -140,7 +140,7 @@ Det här är projektets "lekplats". Planen byggs upp stegvis, från enkelt till 
 - **Trigger:** `pull_request`.
 - Bygger med `hugo --panicOnWarning` så att trasiga mallar och shortcodes fångas.
 - **Länkkontroll** med `lychee` mot det byggda `public/`.
-- **Validering av front matter:** ett litet skript (t.ex. Node eller Python) som kontrollerar att varje recept har `title`, `ingredients`, `servings` och `image`, och att bildfilen finns.
+- **Validering av front matter:** görs i Hugo (`layouts/partials/validate-recipe.html`) med `errorf`. Den kontrollerar `title`, `categories`, `ingredients`, `servings` och `difficulty`, och att bilden finns om `image` är satt. Eftersom kontrollen körs i själva bygget stoppar den även deployen och `hugo server` lokalt, inte bara PR:er.
 - Eventuellt `markdownlint`.
 
 ### 6.3 Övrigt att testa *(steg 3, för lärandets skull)*
@@ -170,7 +170,7 @@ Det här är projektets "lekplats". Planen byggs upp stegvis, från enkelt till 
 | 2 ✅ | Archetype för recept och front matter-modell | `hugo new recipes/x/index.md` ger en komplett mall |
 | 3 ✅ | `deploy.yml` och aktivera Pages | Sidan är live på `github.io` |
 | 4 ✅ | Pages CMS (`.pages.yml`) | Ett recept kan läggas in från mobilen |
-| 5 | `ci.yml` (bygge, länkkontroll, front matter-validering) och Dependabot | PR:er får grön eller röd status |
+| 5 ✅ | `ci.yml` (bygge, länkkontroll, front matter-validering) och Dependabot | PR:er får grön eller röd status |
 | 6 | Pagefind-sök, schemalagd build, övriga förbättringar | – |
 
 ## 9. Beslut
