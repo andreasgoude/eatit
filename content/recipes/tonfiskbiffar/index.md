@@ -18,7 +18,7 @@ ingredients:
   - 1-2 ägg
   - 2 hackade salladslökar
   - 1 chili, finhackad
-  - "½ burkkikärtor eller stora vita bönor. Mosade eller mixade. "
+  - "½ burk kikärtor eller stora vita bönor. Mosade eller mixade. "
   - Hackad Koriander
   - "Bonus: puread majs är gott i smeten också. "
   - "Kryddor: fisksås, japansk soja, ostronsås, salt"
