@@ -34,4 +34,16 @@ ingredients: >-
 ---
 Blanda ihop allt och stek i olja.
 
-Det går att använda nudlar istället för ris. Använder man mycket olja och mer friterar dem så får man lite frasiga biffar eftersom nudlarna sticker ut. 
+Det går att använda nudlar istället för ris. Använder man mycket olja och mer friterar dem så får man lite frasiga biffar eftersom nudlarna sticker ut. Om man gillar bollar kan man gör det istället men då är det lättare att fritera dem. 
+
+Dippsås, förslag: 
+
+0,5 dl Ketchup
+
+0,5 dl Kinesisk Soja
+
+1st Riven vitlök
+
+1 msk Riven ingefära
+
+1 tsk sesamolja
