@@ -15,6 +15,8 @@ cookTime: 180
 totalTime: 210
 difficulty: medel
 ingredients: >
+  Kött:
+
   1 kg Högrev
 
   1 msk Tomatpuré
@@ -24,6 +26,8 @@ ingredients: >
   2 liter Vatten
 
   Olja (För att steka köttet i)
+
+  Sås:
 
   2 st röda chili (eller nån halvtorkad variant)
 
