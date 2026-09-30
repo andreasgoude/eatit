@@ -1,64 +1,49 @@
 {{ define "main" }}
 {{- partial "validate-recipe.html" . }}
-<div class="section">
-  <article class="container box recipe" data-pagefind-body>
-    <header class="columns is-vcentered">
-      {{ with .Params.image }}
-      <div class="column is-4">
-        <figure class="image">
-          {{ partial "recipe-image.html" (dict "page" $ "size" "800x600" "class" "recipe-hero") }}
-          {{ with partial "recipe-image-resource.html" $ }}<span hidden data-pagefind-meta="image:{{ (.Fill "300x200 webp q75 Center").RelPermalink }}"></span>{{ end }}
-        </figure>
-      </div>
-      {{ end }}
-      <div class="column">
-        <h1 class="title is-2">{{ .Title }}</h1>
-        {{ with .Description }}<p class="subtitle is-5">{{ . }}</p>{{ end }}
-        {{ partial "recipe-meta.html" . }}
-        <dl class="recipe-times">
-          {{ with .Params.prepTime }}<div><dt>Förberedelse</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
-          {{ with .Params.cookTime }}<div><dt>Tillagning</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
-          {{ with .Params.totalTime }}<div><dt>Totalt</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
-        </dl>
-        <div class="mt-3">
-          {{ range .GetTerms "categories" }}<a class="tag is-warning is-light" href="{{ .RelPermalink }}" data-pagefind-filter="Kategori">{{ .LinkTitle }}</a> {{ end }}
-          {{ range .GetTerms "tags" }}<a class="tag is-primary is-light" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> {{ end }}
-        </div>
-      </div>
-    </header>
-
-    <div class="columns recipe-body">
-      {{ with .Params.ingredients }}
-      <aside class="column is-4">
-        <h2 class="title is-4">Ingredienser</h2>
-        {{ with $.Params.servings }}
-        <div class="servings-control" data-servings="{{ . }}" data-pagefind-ignore>
-          <button type="button" class="button is-small" data-step="-1" aria-label="Färre portioner">−</button>
-          <input type="number" min="1" max="99" value="{{ . }}" aria-label="Antal portioner" />
-          <button type="button" class="button is-small" data-step="1" aria-label="Fler portioner">+</button>
-          <span>portioner</span>
-        </div>
-        {{ end }}
-        <ul class="ingredients">
-          {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
-        </ul>
-      </aside>
-      {{ end }}
-      <div class="column content">{{ .Content }}</div>
+<article class="r-recipe" data-pagefind-body>
+  <header class="r-head">
+    {{ with partial "recipe-image-resource.html" . }}
+    {{ $img := .Fill "1200x700 webp q80 Center" }}
+    <img class="r-hero" src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $.Title }}" fetchpriority="high" />
+    <span hidden data-pagefind-meta="image:{{ (.Fill "300x200 webp q75 Center").RelPermalink }}"></span>
+    {{ end }}
+    <h1 class="r-title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="r-lead">{{ . }}</p>{{ end }}
+    <dl class="r-times">
+      {{ with .Params.prepTime }}<div><dt>Förberedelse</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
+      {{ with .Params.cookTime }}<div><dt>Tillagning</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
+      {{ with .Params.totalTime }}<div><dt>Totalt</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
+      {{ with .Params.difficulty }}<div><dt>Svårighet</dt><dd>{{ . }}</dd></div>{{ end }}
+    </dl>
+    <div class="r-chips">
+      {{ range .GetTerms "categories" }}<a class="r-chip" href="{{ .RelPermalink }}" data-pagefind-filter="Kategori">{{ .LinkTitle }}</a>{{ end }}
+      {{ range .GetTerms "tags" }}<a class="r-chip r-chip-tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
     </div>
-
-    <footer class="recipe-footer" data-pagefind-ignore>
-      <small class="has-text-grey">Publicerat {{ .Date | time.Format ":date_long" }}</small>
-      {{ with .File }}{{ with site.Params.repo }}
-      <a class="button is-small" href="{{ . }}/{{ site.Params.editpath }}/content/{{ replace $.File.Path "\\" "/" }}" title="Redigera på GitHub">
-        <span class="icon is-small"><i class="fa fa-pen"></i></span><span>Redigera</span>
-      </a>
-      {{ end }}{{ end }}
-    </footer>
-  </article>
-</div>
-{{- with .Params.servings }}
+  </header>
+  <div class="r-body">
+    {{ with .Params.ingredients }}
+    <aside class="r-ingredients">
+      <h2>Ingredienser</h2>
+      {{ with $.Params.servings }}
+      <div class="servings-control" data-servings="{{ . }}" data-pagefind-ignore>
+        <button type="button" data-step="-1" aria-label="Färre portioner">−</button>
+        <input type="number" min="1" max="99" value="{{ . }}" aria-label="Antal portioner" />
+        <button type="button" data-step="1" aria-label="Fler portioner">+</button>
+        <span>portioner</span>
+      </div>
+      {{ end }}
+      <ul class="ingredients">{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+    </aside>
+    {{ end }}
+    <div class="r-steps {{ site.Params.proseClass }}">{{ .Content }}</div>
+  </div>
+  <footer class="r-foot" data-pagefind-ignore>
+    <span>Publicerat {{ .Date | time.Format ":date_long" }}</span>
+    {{ with .File }}{{ with site.Params.repo }}
+    <a href="{{ . }}/{{ site.Params.editpath }}/content/{{ replace $.File.Path "\\" "/" }}">Redigera på GitHub</a>
+    {{ end }}{{ end }}
+  </footer>
+</article>
 {{- $js := resources.Get "js/servings.js" | js.Build (dict "minify" true) | fingerprint }}
-<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
-{{- end }}
+<script defer src="{{ $js.RelPermalink }}"></script>
 {{ end }}

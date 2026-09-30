@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="{{ "pagefind/pagefind-ui.css" | relURL }}" />
+<div id="search" class="r-search"></div>
+<script>
+  (function () {
+    var s = document.createElement("script");
+    s.src = "{{ "pagefind/pagefind-ui.js" | relURL }}";
+    s.onload = function () {
+      new PagefindUI({ element: "#search", showSubResults: false, showImages: true, resetStyles: false,
+        translations: { placeholder: "Sök bland recepten …", zero_results: "Inga recept matchar [SEARCH_TERM]" } });
+    };
+    document.head.appendChild(s);
+  })();
+</script>
