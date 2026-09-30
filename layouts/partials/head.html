@@ -26,10 +26,9 @@
   {{- $styles := resources.Get "main.scss" | resources.ExecuteAsTemplate "main.scss" . | css.Sass | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" />
 
-  {{- $searchJSFile := printf "%s.search.js" .Language.Lang }}
-  {{- $searchJS := resources.Get "search.js" | resources.ExecuteAsTemplate $searchJSFile . | resources.Minify | resources.Fingerprint }}
-  <script defer src="{{ "js/flexsearch.min.js" | relURL }}"></script>
-  <script defer src="{{ $searchJS.RelPermalink }}" integrity="{{ $searchJS.Data.Integrity }}" crossorigin="anonymous"></script>
+  {{- if .IsHome }}
+  <link rel="stylesheet" href="{{ "pagefind/pagefind-ui.css" | relURL }}" />
+  {{- end }}
 
   {{- if and .IsPage (eq .Section "recipes") }}
   {{- partial "recipe-jsonld.html" . }}

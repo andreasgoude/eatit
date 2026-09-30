@@ -3,3 +3,5 @@
 .hugo_build.lock
 .DS_Store
 /_linkcheck/
+/node_modules/
+/static/pagefind/

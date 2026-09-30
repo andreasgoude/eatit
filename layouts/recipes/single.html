@@ -1,12 +1,13 @@
 {{ define "main" }}
 {{- partial "validate-recipe.html" . }}
 <div class="section">
-  <article class="container box recipe">
+  <article class="container box recipe" data-pagefind-body>
     <header class="columns is-vcentered">
       {{ with .Params.image }}
       <div class="column is-4">
         <figure class="image">
           {{ partial "recipe-image.html" (dict "page" $ "size" "800x600" "class" "recipe-hero") }}
+          {{ with partial "recipe-image-resource.html" $ }}<span hidden data-pagefind-meta="image:{{ (.Fill "300x200 webp q75 Center").RelPermalink }}"></span>{{ end }}
         </figure>
       </div>
       {{ end }}
@@ -20,7 +21,7 @@
           {{ with .Params.totalTime }}<div><dt>Totalt</dt><dd>{{ partial "duration.html" . }}</dd></div>{{ end }}
         </dl>
         <div class="mt-3">
-          {{ range .GetTerms "categories" }}<a class="tag is-warning is-light" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> {{ end }}
+          {{ range .GetTerms "categories" }}<a class="tag is-warning is-light" href="{{ .RelPermalink }}" data-pagefind-filter="Kategori">{{ .LinkTitle }}</a> {{ end }}
           {{ range .GetTerms "tags" }}<a class="tag is-primary is-light" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> {{ end }}
         </div>
       </div>
@@ -30,7 +31,14 @@
       {{ with .Params.ingredients }}
       <aside class="column is-4">
         <h2 class="title is-4">Ingredienser</h2>
-        {{ with $.Params.servings }}<p class="has-text-grey">{{ . }} portioner</p>{{ end }}
+        {{ with $.Params.servings }}
+        <div class="servings-control" data-servings="{{ . }}" data-pagefind-ignore>
+          <button type="button" class="button is-small" data-step="-1" aria-label="Färre portioner">−</button>
+          <input type="number" min="1" max="99" value="{{ . }}" aria-label="Antal portioner" />
+          <button type="button" class="button is-small" data-step="1" aria-label="Fler portioner">+</button>
+          <span>portioner</span>
+        </div>
+        {{ end }}
         <ul class="ingredients">
           {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
         </ul>
@@ -39,7 +47,7 @@
       <div class="column content">{{ .Content }}</div>
     </div>
 
-    <footer class="recipe-footer">
+    <footer class="recipe-footer" data-pagefind-ignore>
       <small class="has-text-grey">Publicerat {{ .Date | time.Format ":date_long" }}</small>
       {{ with .File }}{{ with site.Params.repo }}
       <a class="button is-small" href="{{ . }}/{{ site.Params.editpath }}/content/{{ replace $.File.Path "\\" "/" }}" title="Redigera på GitHub">
@@ -49,4 +57,8 @@
     </footer>
   </article>
 </div>
+{{- with .Params.servings }}
+{{- $js := resources.Get "js/servings.js" | js.Build (dict "minify" true) | fingerprint }}
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{- end }}
 {{ end }}

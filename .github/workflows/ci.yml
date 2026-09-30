@@ -27,10 +27,22 @@ jobs:
       - name: Setup Hugo
         uses: ./.github/actions/setup-hugo
 
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install Pagefind
+        run: npm ci
+
       # --panicOnWarning gör varningar (t.ex. föråldrade funktioner) till fel.
       # Receptvalideringen (layouts/partials/validate-recipe.html) körs som en del av bygget.
       - name: Build (strict)
         run: hugo --gc --minify --panicOnWarning --baseURL "https://andreasgoude.github.io/eatit/"
+
+      - name: Build search index
+        run: npx pagefind --site public
 
       # Sidan ligger under /eatit/ på GitHub Pages, så bygget kopieras till en mapp med samma struktur.
       - name: Prepare link check

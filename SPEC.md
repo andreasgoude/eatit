@@ -171,7 +171,7 @@ Det här är projektets "lekplats". Planen byggs upp stegvis, från enkelt till 
 | 3 ✅ | `deploy.yml` och aktivera Pages | Sidan är live på `github.io` |
 | 4 ✅ | Pages CMS (`.pages.yml`) | Ett recept kan läggas in från mobilen |
 | 5 ✅ | `ci.yml` (bygge, länkkontroll, front matter-validering) och Dependabot | PR:er får grön eller röd status |
-| 6 | Pagefind-sök, schemalagd build, övriga förbättringar | – |
+| 6 ✅ | Pagefind-sök, schemalagd build, portionsskalning, Lighthouse CI | Sök i hela receptet, tidsinställda recept publiceras, mängderna räknas om vid ändrat antal portioner |
 
 ## 9. Beslut
 
@@ -182,4 +182,6 @@ Det här är projektets "lekplats". Planen byggs upp stegvis, från enkelt till 
 | Innehåll | Bara recept, inga vanliga blogginlägg |
 | Import av befintliga recept | Nej, vi börjar från noll med några exempelrecept |
 | Bilder från CMS | Pages CMS har en gemensam mediamapp, `assets/images/`. Mallarna letar först efter bilden i receptets mapp och sedan i `assets/`, så båda sätten fungerar och Hugo optimerar bilden i båda fallen. |
+| Sök | Pagefind ersätter temats FlexSearch, som bara sökte på titlar. Bara receptsidor indexeras (`data-pagefind-body`), och kategorierna blir filter. |
+| Kvar från nice-to-have | Mörkt läge och egen domän är inte gjorda. Utskrifts-CSS och JSON-LD gjordes redan i fas 3. |
 | Theme | **Cuisine Book**, som git submodule. Quiet Foodie bygger inte på Hugo 0.167 (det använder `.Site.Author`, som har tagits bort) och har inte uppdaterats sedan 2024. Cuisine Book underhålls och har sök. Receptlayout, svenska texter och JSON-LD ligger som egna overrides i `layouts/`. |
