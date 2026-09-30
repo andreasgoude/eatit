@@ -3,7 +3,7 @@
 En receptsida byggd med [Hugo](https://gohugo.io) och temat [Congo](https://github.com/jpanther/congo), med mörkt läge som följer systemet. Den publiceras på GitHub Pages:
 **https://andreasgoude.github.io/eatit/**
 
-Mer om bakgrunden och planen finns i [SPEC.md](SPEC.md).
+Mer om bakgrunden och planen finns i [SPEC.md](SPEC.md). Hur allt fungerar tekniskt, inklusive vad som händer i GitHub, står i [TEKNIK.md](TEKNIK.md).
 
 ## Lägga till ett recept
 
@@ -46,7 +46,7 @@ Själva instruktionerna skrivs i Markdown under front matter.
 ## Hur det fungerar
 
 - En pull request kör [.github/workflows/ci.yml](.github/workflows/ci.yml): ett strikt bygge, validering av alla recept och kontroll av interna länkar.
-- Ett recept som saknar obligatoriska fält stoppar bygget med ett tydligt fel, både lokalt och i Actions. Reglerna finns i `layouts/partials/validate-recipe.html`. Om deployen stoppas ligger den förra versionen av sidan kvar.
+- Ett recept som saknar obligatoriska fält stoppar bygget med ett tydligt fel, både lokalt och i Actions. Reglerna finns i `layouts/_partials/validate-recipe.html`. Om deployen stoppas ligger den förra versionen av sidan kvar.
 - Sökningen görs med [Pagefind](https://pagefind.app). Det söker i hela receptet (ingredienser och instruktioner), förstår svenska och kan filtrera på kategori. Indexet byggs i Actions efter Hugo.
 - På receptsidorna kan man ändra antalet portioner, och då räknas mängderna om ([assets/js/servings.js](assets/js/servings.js)). Bara mängden i början av raden skalas, så t.ex. "(400 g)" längre in lämnas orört.
 - Deployen körs också varje morgon kl 04:00 UTC, så att tidsinställda recept publiceras. Efter varje deploy mäter Lighthouse prestanda, tillgänglighet och SEO.

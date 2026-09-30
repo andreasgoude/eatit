@@ -140,7 +140,7 @@ Det här är projektets "lekplats". Planen byggs upp stegvis, från enkelt till 
 - **Trigger:** `pull_request`.
 - Bygger med `hugo --panicOnWarning` så att trasiga mallar och shortcodes fångas.
 - **Länkkontroll** med `lychee` mot det byggda `public/`.
-- **Validering av front matter:** görs i Hugo (`layouts/partials/validate-recipe.html`) med `errorf`. Den kontrollerar `title`, `categories`, `ingredients`, `servings` och `difficulty`, och att bilden finns om `image` är satt. Eftersom kontrollen körs i själva bygget stoppar den även deployen och `hugo server` lokalt, inte bara PR:er.
+- **Validering av front matter:** görs i Hugo (`layouts/_partials/validate-recipe.html`) med `errorf`. Den kontrollerar `title`, `categories`, `ingredients`, `servings` och `difficulty`, och att bilden finns om `image` är satt. Eftersom kontrollen körs i själva bygget stoppar den även deployen och `hugo server` lokalt, inte bara PR:er.
 - Eventuellt `markdownlint`.
 
 ### 6.3 Övrigt att testa *(steg 3, för lärandets skull)*

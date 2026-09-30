@@ -37,7 +37,7 @@ jobs:
         run: npm ci
 
       # --panicOnWarning gör varningar (t.ex. föråldrade funktioner) till fel.
-      # Receptvalideringen (layouts/partials/validate-recipe.html) körs som en del av bygget.
+      # Receptvalideringen (layouts/_partials/validate-recipe.html) körs som en del av bygget.
       - name: Build (strict)
         run: hugo --gc --minify --panicOnWarning --baseURL "https://andreasgoude.github.io/eatit/"
 
