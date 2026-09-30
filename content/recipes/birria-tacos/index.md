@@ -2,10 +2,10 @@
 title: Birria Tacos
 date: 2026-09-30
 draft: false
-description: "Det finaste man kan äta i köttväg. Det är superenkelt att tillaga
-  fram till själva serveringen. Då är det jävligt och du som tillagare av maten
-  får äta sist ensam framför spisen. Men såsen eller soppan som det egentligen
-  är, fyller dig med kärlek och värme så det gör inget. "
+description: "Det är superenkelt att tillaga fram till själva serveringen. Den
+  är jävlig och du som kock av maten får äta ensam framför spisen. Men såsen
+  eller soppan som det egentligen är, fyller dig med kärlek och värme så det gör
+  inget. "
 image: /images/img1212.jpg
 categories:
   - Middag
