@@ -4,6 +4,9 @@ date: 2026-09-30
 draft: false
 description: När man behöver döda bakterier och skrämma personer i sin närhet i samma tugga
 image: /images/img1201.jpeg
+gallery:
+  - /images/IMG_1215.jpg
+  - /images/img1201.jpeg
 categories:
   - Frukost
 tags:
