@@ -35,7 +35,7 @@ ingredients: >
 
   3 Ancho Chili (kan uteslutas, eller använd torkade kryddan)
 
-  0,5dl Äppelcidervinäger eller maltvinäger
+  0,5 dl Äppelcidervinäger eller maltvinäger
 
   3 st Lagerblad
 
@@ -59,7 +59,7 @@ ingredients: >
 
   1 tsk rökt Paprikapulver
 
-  1 tsk spiskummin
+  2 tsk spiskummin
 
 
   Servering: 
@@ -101,7 +101,7 @@ Servering:
 
 Olja upp en rätt varm stekpanna 8/10 eller 7/9 eller 4/6 jag vet inte. 
 
-Dränk en taco helt och för sedan till pannan. 
+Dränk en taco helt i såsen och för sedan till pannan. 
 
 Lägg på en mängd kött, ost, lök och koriander. Vik sedan ihop tacon på mitten. Vänd när den fått färg. 
 
