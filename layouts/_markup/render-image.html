@@ -1,0 +1,9 @@
+{{- /* Bilder som infogas i texten (t.ex. via Pages CMS) ligger i assets/ och måste
+       bearbetas av Hugo för att få en fungerande adress. Externa bilder lämnas orörda. */ -}}
+{{- with partial "image-resource.html" (dict "page" .Page "path" .Destination) -}}
+  {{- $img := . -}}
+  {{- if gt .Width 1200 }}{{ $img = .Resize "1200x webp q80" }}{{ end -}}
+  <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $.Text }}" loading="lazy" class="r-inline-img" />
+{{- else -}}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy" class="r-inline-img" />
+{{- end -}}

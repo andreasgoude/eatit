@@ -10,3 +10,4 @@
 {{- with $p.difficulty }}{{ if not (in (slice "enkel" "medel" "svår") .) }}{{ errorf "Receptet %s har okänd difficulty %q (enkel, medel eller svår)" $f . }}{{ end }}{{ end -}}
 {{- range slice "prepTime" "cookTime" "totalTime" }}{{ with index $p (lower .) }}{{ if lt (int .) 0 }}{{ errorf "Receptet %s: tiden kan inte vara negativ" $f }}{{ end }}{{ end }}{{ end -}}
 {{- with $p.image }}{{ if not (partial "recipe-image-resource.html" $) }}{{ errorf "Receptet %s: bilden %q hittades varken i receptets mapp eller i assets/" $f . }}{{ end }}{{ end -}}
+{{- range $p.gallery }}{{ if not (partial "image-resource.html" (dict "page" $ "path" .)) }}{{ errorf "Receptet %s: galleribilden %q hittades varken i receptets mapp eller i assets/" $f . }}{{ end }}{{ end -}}

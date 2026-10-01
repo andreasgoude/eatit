@@ -48,6 +48,11 @@ content:
       - name: image
         label: Bild
         type: image
+      - name: gallery
+        label: Fler bilder
+        description: "Visas som ett galleri under instruktionerna"
+        type: image
+        list: true
       - name: categories
         label: Kategori
         type: select

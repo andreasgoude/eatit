@@ -1,0 +1,8 @@
+{{- /* Hittar en bild utifrån en sökväg. Först i sidans egen mapp (t.ex. "cover.jpg"),
+       sedan i assets/, dit Pages CMS laddar upp bilder (t.ex. "/images/kanelbullar.jpg").
+       Anropas med (dict "page" . "path" "..."). */ -}}
+{{- $res := false -}}
+{{- with .path -}}
+  {{- $res = or ($.page.Resources.GetMatch .) (resources.Get (strings.TrimPrefix "/" .)) -}}
+{{- end -}}
+{{- return $res -}}

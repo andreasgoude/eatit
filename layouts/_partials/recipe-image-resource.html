@@ -1,7 +1,2 @@
-{{- /* Hittar receptbilden. Först letas den i receptets egen mapp (t.ex. "cover.jpg"),
-       sedan i assets/, dit Pages CMS laddar upp bilder (t.ex. "/images/kanelbullar.jpg"). */ -}}
-{{- $res := false -}}
-{{- with .Params.image -}}
-  {{- $res = or ($.Resources.GetMatch .) (resources.Get (strings.TrimPrefix "/" .)) -}}
-{{- end -}}
-{{- return $res -}}
+{{- /* Hittar receptets huvudbild (fältet image). */ -}}
+{{- return partial "image-resource.html" (dict "page" . "path" .Params.image) -}}

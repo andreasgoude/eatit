@@ -46,3 +46,10 @@ html.dark { --r-text: rgb(var(--color-neutral-100)); --r-muted: rgb(var(--color-
 .r-foot a { color: var(--r-accent); }
 @media print { .r-foot a { display: none; } }
 .ingredients li.ingredients-heading { border-bottom: none; padding: 1.1rem 0 .2rem; font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--r-muted); }
+.r-inline-img { border-radius: 10px; max-width: 100%; height: auto; }
+.r-gallery { margin-top: 2.5rem; }
+.r-gallery h2 { font-size: 1.3rem; font-weight: 700; margin: 0 0 .75rem; }
+.r-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .75rem; }
+.r-gallery-grid a { display: block; border-radius: 10px; overflow: hidden; box-shadow: none !important; }
+.r-gallery-grid img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; margin: 0; transition: transform .2s; }
+.r-gallery-grid a:hover img { transform: scale(1.03); }

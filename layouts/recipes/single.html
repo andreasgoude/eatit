@@ -42,6 +42,18 @@
     {{ end }}
     <div class="r-steps {{ site.Params.proseClass }}">{{ .Content }}</div>
   </div>
+  {{ with .Params.gallery }}
+  <section class="r-gallery" data-pagefind-ignore>
+    <h2>Fler bilder</h2>
+    <div class="r-gallery-grid">
+      {{ range . }}{{ with partial "image-resource.html" (dict "page" $ "path" .) }}
+      {{ $thumb := .Fill "600x450 webp q75 Center" }}
+      {{ $full := cond (gt .Width 1600) (.Resize "1600x webp q80") . }}
+      <a href="{{ $full.RelPermalink }}" target="_blank"><img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $.Title }}" loading="lazy" /></a>
+      {{ end }}{{ end }}
+    </div>
+  </section>
+  {{ end }}
   <footer class="r-foot" data-pagefind-ignore>
     <span>Publicerat {{ .Date | time.Format ":date_long" }}</span>
     {{ with .File }}{{ with site.Params.repo }}
