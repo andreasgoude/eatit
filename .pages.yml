@@ -1,5 +1,6 @@
 # Konfiguration för Pages CMS (https://pagescms.org).
 # Logga in på app.pagescms.org med GitHub och välj repot andreasgoude/eatit.
+# Fältet "Fler bilder" (gallery) visas som ett bildgalleri under instruktionerna.
 
 media:
   input: assets/images     # där bilderna hamnar i repot
