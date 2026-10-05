@@ -32,3 +32,5 @@ ingredients: |-
 3. **Rulla små bollar och låt dem vila ytterligare 5 min.**
 4. **Stek bollarna gyllene i smör i en stekpanna ca 5 min.**
 
+Med kryddpeppar och ev någon annan julsmakande krydda passar dessa 24/12 till Kalle.
+
