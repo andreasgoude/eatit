@@ -47,10 +47,10 @@ enableRobotsTXT = true
     layout = "page"
 
 [[menus.main]]
-  name = "Recept"
+  name = "recept"
   pageRef = "/recipes"
   weight = 1
 [[menus.main]]
-  name = "Kategorier"
+  name = "kategorier"
   pageRef = "/categories"
   weight = 2
