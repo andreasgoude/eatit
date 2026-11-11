@@ -7,6 +7,6 @@
     "dev": "hugo --gc --quiet && pagefind --site public --output-path static/pagefind && hugo server -D"
   },
   "devDependencies": {
-    "pagefind": "1.5.2"
+    "pagefind": "1.6.0"
   }
 }
